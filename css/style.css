@@ -1,0 +1,258 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #282828;
+  padding: 2rem;
+}
+
+form {
+  display: flex;
+  width: 100%;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* clears the ‘X’ from Internet Explorer */
+input[type='search']::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+input[type='search']::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+/* clears the ‘X’ from Chrome */
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
+  display: none;
+}
+
+.search-method {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+  /* border-right: 1px solid #fff; */
+  /* border: 10px solid blue; */
+}
+
+.search-method input {
+  font-weight: 600;
+  color: #ffe47e;
+  font-family: inherit;
+  font-size: 1rem;
+  width: max-content;
+  /* padding: 0.5rem 0; */
+  border-right: none;
+  border-radius: 0.5rem 0 0 0.5rem;
+  width: 108px;
+}
+
+.search-method input:focus ~ .dropdown {
+  display: block;
+}
+
+.search-method button {
+  border: none;
+  background-color: inherit;
+  position: absolute;
+  top: 1.3rem;
+  right: 1rem;
+}
+
+.input-box {
+  display: flex;
+  width: 100%;
+  /* border: 1px solid white; */
+  /* border-radius: 0.5rem; */
+  /* padding: 0.5rem 0 0.5rem 1rem; */
+}
+
+.input-box > input {
+  width: 100%;
+  border-radius: 0 0.5rem 0.5rem 0;
+  color: #fff;
+}
+
+.input-box > input:focus {
+  /* border-left: transparent; */
+}
+
+form > button {
+  padding: 0 1rem;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #097bed;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+form > button:hover,
+form > button:active {
+  background-color: #0265d2;
+}
+
+input {
+  /* width: 100%; */
+  padding: 0.8rem 0 0.8rem 0.8rem;
+  background-color: inherit;
+  border: 3px solid #ffffff21;
+  /* border: none; */
+}
+
+input:focus {
+  outline: transparent;
+  border: 3px solid #097bed;
+  /* border: transparent; */
+}
+
+.dropdown {
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.65);
+  width: max-content;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  position: absolute;
+  top: 3.7rem;
+  display: none;
+  background-color: #282828;
+  z-index: 10;
+}
+
+.dropdown > p {
+  margin: 0 1rem 0 0.5rem;
+  border-top: 1px solid #3b3b3b;
+  color: white;
+  font-size: 0.7rem;
+  padding: 0.5rem 0.5rem 1rem 0;
+}
+
+.dropdown-options {
+  margin-bottom: 0.5rem;
+}
+
+.dropdown-options p {
+  padding: 0.5rem 0.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+.dropdown-options p:nth-child(1) {
+  color: #6bdd9a;
+}
+
+.dropdown-options p:nth-child(2) {
+  color: #ffe47e;
+}
+
+.dropdown-options p:nth-child(3) {
+  color: #74aef6;
+}
+
+.dropdown-options p:nth-child(4) {
+  color: #c0a8e1;
+}
+
+.dropdown-options p:nth-child(5) {
+  color: #f79a8e;
+}
+
+.dropdown-options p:nth-child(6) {
+  color: #6bdd9a;
+}
+
+.dropdown-options p:nth-child(7) {
+  color: #f15eb0;
+}
+
+.dropdown-options p:hover {
+  background-color: #3b3b3b;
+}
+
+.data-entry {
+  display: flex;
+  gap: 2rem;
+  color: #a6a6a6;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.7rem;
+}
+
+.data-entry p {
+  cursor: pointer;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #ff6c37;
+}
+
+.data-entry p:hover {
+  color: #fff;
+}
+
+.data-entry-type {
+  color: #a6a6a6;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.data-entry-table,
+.data-entry-input {
+  display: grid;
+  grid-template-columns: 0.1fr 1fr 1fr 1fr;
+  border: 1px solid #3b3b3b;
+  color: #a6a6a6;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.data-entry-input {
+  border-top: none;
+}
+
+.data-entry-input input {
+  border: none;
+  color: #fff;
+}
+
+.data-entry-input input::placeholder {
+  color: #a6a6a6;
+}
+
+.data-entry-input input:hover {
+  border: none;
+}
+
+.data-entry-table p,
+.data-entry-input input {
+  padding: 0.5rem;
+}
+
+.data-entry-table p:nth-child(1),
+.data-entry-input input:nth-child(1) {
+  grid-column: 2 / span 1;
+  border-left: 1px solid #3b3b3b;
+  border-right: 1px solid #3b3b3b;
+}
+
+.data-entry-table p:nth-child(2),
+.data-entry-input input:nth-child(2) {
+  border-right: 1px solid #3b3b3b;
+}

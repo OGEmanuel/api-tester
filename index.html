@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="css/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/b104dd498c.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>API Tester</title>
+  </head>
+  <body>
+    <section>
+      <form>
+        <div class="input-box">
+          <div class="search-method">
+            <input
+              type="search"
+              class=""
+              placeholder="METHOD"
+              spellcheck="false"
+              aria-label="search"
+              value="GET"
+            />
+            <button type="button">
+              <i
+                class="fa-solid fa-angle-down fa-sm"
+                style="color: #fafafa"
+              ></i>
+            </button>
+            <div class="dropdown">
+              <div class="dropdown-options">
+                <p>GET</p>
+                <p>POST</p>
+                <p>PUT</p>
+                <p>PATCH</p>
+                <p>DELETE</p>
+                <p>HEAD</p>
+                <p>OPTIONS</p>
+              </div>
+              <p>Type a new method</p>
+            </div>
+          </div>
+          <input type="text" placeholder="Enter URL or place text" />
+        </div>
+        <button>Send</button>
+      </form>
+      <div class="data-entry">
+        <p>Params</p>
+        <p>Headers</p>
+        <p>Body</p>
+      </div>
+      <p class="data-entry-type">Query Params</p>
+      <div class="data-entry-table">
+        <p>Key</p>
+        <p>Value</p>
+        <p>Description</p>
+      </div>
+      <div class="data-entry-input">
+        <input type="text" placeholder="Key" />
+        <input type="text" placeholder="Value" />
+        <input type="text" placeholder="Description" />
+      </div>
+    </section>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
