@@ -13,7 +13,7 @@ body {
 }
 
 section:nth-child(1) {
-  padding: 2rem;
+  padding: 2rem 2rem 0;
 }
 
 section:nth-child(2) {
@@ -93,11 +93,8 @@ input[type='search']::-webkit-search-results-decoration {
   width: max-content;
   border-right: none;
   border-radius: 0.5rem 0 0 0.5rem;
-  width: 108px;
-}
-
-.search-method input:focus ~ .dropdown {
-  display: block;
+  width: 120px;
+  text-transform: uppercase;
 }
 
 .search-method button {
@@ -106,6 +103,7 @@ input[type='search']::-webkit-search-results-decoration {
   position: absolute;
   top: 1.3rem;
   right: 1rem;
+  pointer-events: none;
 }
 
 .input-box {
@@ -153,7 +151,6 @@ input:focus {
   border-radius: 0.5rem;
   position: absolute;
   top: 3.7rem;
-  display: none;
   background-color: #282828;
   z-index: 10;
 }
@@ -301,7 +298,7 @@ input:focus {
 }
 
 .data-entry-box {
-  height: 10rem;
+  height: 16rem;
   overflow: auto;
 }
 
