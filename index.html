@@ -52,22 +52,103 @@
         <button>Send</button>
       </form>
       <div class="data-entry">
-        <p>Params</p>
-        <p>Headers</p>
-        <p>Body</p>
+        <p class="selected" id="params-selector">Params</p>
+        <p id="header-selector">Headers</p>
+        <p id="body-selector">Body</p>
       </div>
-      <p class="data-entry-type">Query Params</p>
-      <div class="data-entry-table">
-        <p>Key</p>
-        <p>Value</p>
-        <p>Description</p>
+      <div id="query">
+        <p class="data-entry-type">Query Params</p>
+        <div class="data-entry-box">
+          <div class="data-entry-table">
+            <p>Key</p>
+            <p>Value</p>
+            <p>Description</p>
+          </div>
+          <div class="data-entry-input">
+            <input type="text" placeholder="Key" />
+            <input type="text" placeholder="Value" />
+            <input type="text" placeholder="Description" />
+            <button id="delete-row" data-hover="Delete Row">
+              <i class="fa-regular fa-trash-can" style="color: #f0f2f5"></i>
+            </button>
+          </div>
+          <button data-hover="Add Row" id="add-row">
+            <i
+              class="fa-solid fa-circle-plus fa-2xl"
+              style="color: #fafafa"
+            ></i>
+          </button>
+        </div>
       </div>
+      <div id="headers" class="hidden">
+        <p class="data-entry-type">Headers</p>
+        <div class="data-entry-box">
+          <div class="data-entry-table">
+            <p>Key</p>
+            <p>Value</p>
+            <p>Description</p>
+          </div>
+          <div class="data-entry-input">
+            <input type="text" placeholder="Key" />
+            <input type="text" placeholder="Value" />
+            <input type="text" placeholder="Description" />
+            <button id="delete-button" data-hover="Delete Row">
+              <i class="fa-regular fa-trash-can" style="color: #f0f2f5"></i>
+            </button>
+          </div>
+          <button data-hover="Add Row" id="add-row">
+            <i
+              class="fa-solid fa-circle-plus fa-2xl"
+              style="color: #fafafa"
+            ></i>
+          </button>
+        </div>
+      </div>
+      <div id="body" class="hidden">
+        <p class="data-entry-type">Body</p>
+        <div class="data-entry-box">
+          <div class="data-entry-table">
+            <p>Key</p>
+            <p>Value</p>
+            <p>Description</p>
+          </div>
+          <div class="data-entry-input">
+            <input type="text" placeholder="Key" />
+            <input type="text" placeholder="Value" />
+            <input type="text" placeholder="Description" />
+            <button id="delete-button" data-hover="Delete Row">
+              <i class="fa-regular fa-trash-can" style="color: #f0f2f5"></i>
+            </button>
+          </div>
+          <button data-hover="Add Row" id="add-row">
+            <i
+              class="fa-solid fa-circle-plus fa-2xl"
+              style="color: #fafafa"
+            ></i>
+          </button>
+        </div>
+      </div>
+    </section>
+    <section>
+      <p>Body</p>
+      <div>
+        <i class="fa-solid fa-globe" style="color: #f7f7f8"></i>
+        <p>Status: <span>200 OK</span></p>
+        <p>Time: <span>1557 ms</span></p>
+        <p>Size: <span>523 B</span></p>
+      </div>
+    </section>
+
+    <!-- <template id="table-format">
       <div class="data-entry-input">
         <input type="text" placeholder="Key" />
         <input type="text" placeholder="Value" />
         <input type="text" placeholder="Description" />
+        <button id="delete-row" data-hover="Delete Row">
+          <i class="fa-regular fa-trash-can" style="color: #f0f2f5"></i>
+        </button>
       </div>
-    </section>
+    </template> -->
     <script type="module" src="/main.js"></script>
   </body>
 </html>
