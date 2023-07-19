@@ -5,10 +5,17 @@ const paramsTable = document.getElementById('query');
 const headersTable = document.getElementById('headers');
 const bodyTable = document.getElementById('body');
 const addRow = document.querySelectorAll('#add-row');
-const deleteRow = document.querySelectorAll('#delete-row');
-const tableFormat = document.getElementById('table-format');
-// const parent = document.querySelectorAll('.data-entry-box');
-// const newRow = document.querySelectorAll('.data-entry-input');
+
+const deleteAddedRows = newRow => {
+  const clicked = newRow.querySelector('#delete-row');
+
+  const deleteOnClick = e => {
+    const element = e.target.closest('.data-entry-input');
+    element.remove();
+  };
+
+  clicked.addEventListener('click', deleteOnClick);
+};
 
 const addNewRow = e => {
   const parent = e.target.closest('.data-entry-box');
@@ -18,25 +25,19 @@ const addNewRow = e => {
       <input type="text" placeholder="Key" />
       <input type="text" placeholder="Value" />
       <input type="text" placeholder="Description" />
-      <button class="delete-row" data-hover="Delete Row">
+      <button id="delete-row" data-hover="Delete Row">
         <i class="fa-regular fa-trash-can" style="color: #f0f2f5"></i>
       </button>
     `;
 
   parent.insertBefore(newRow, e.target.parentNode);
+
+  deleteAddedRows(newRow);
 };
 
 for (let i = 0; i < addRow.length; i++) {
   addRow[i].addEventListener('click', addNewRow);
 }
-
-// const deleteOnClick = () => {
-//   parent.removeChild(newRow);
-// };
-
-// for (let i = 0; i < deleteRow.length; i++) {
-//   deleteRow[i].addEventListener('click', deleteOnClick);
-// }
 
 const onClickParams = () => {
   paramsSelector.classList.add('selected');
