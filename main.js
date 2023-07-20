@@ -1,4 +1,6 @@
 import axios from 'axios';
+import prettyBytes from 'pretty-bytes';
+// import { setupEditors } from './setupEditor';
 
 const paramsSelector = document.getElementById('params-selector');
 const headerSelector = document.getElementById('header-selector');
@@ -24,6 +26,28 @@ const responseHeader = document.getElementById('response-header-selector');
 const displayBody = document.getElementById('display-body');
 const displayHeader = document.getElementById('display-header');
 
+axios.interceptors.request.use(request => {
+  request.customData = request.customData || {};
+  request.customData.startTime = new Date().getTime();
+  return request;
+});
+
+const updateEndTime = response => {
+  response.customData = response.customData || {};
+  response.customData.time =
+    new Date().getTime() - response.config.customData.startTime;
+  return response;
+};
+
+axios.interceptors.response.use(updateEndTime, e => {
+  return Promise.reject(updateEndTime(e.response));
+});
+
+const updateResponseEditor = data => {
+  JSON.stringify(data, null, 2);
+};
+
+// const { requestEditor,  } = setupEditors();
 const submitHandler = e => {
   e.preventDefault();
   if (urlInput.value === '') {
@@ -36,16 +60,31 @@ const submitHandler = e => {
     method: methodInput.value,
     params: valuesToObjects(queryParamsContainer),
     headers: valuesToObjects(headersContainer),
-  }).then(response => {
-    updateResponseDetails(response);
-    // updateResponseEditor(response.data);
-    updateResponseHeaders(response.headers);
-    console.log(response);
-  });
+  })
+    .catch(e => e)
+    .then(response => {
+      document.getElementById('response-details').style.display = 'flex';
+      updateResponseDetails(response);
+      updateResponseEditor(response.data);
+      updateResponseHeaders(response.headers);
+      console.log(response);
+    });
 };
 
 const updateResponseDetails = response => {
-  document.querySelector('#status').textContent = response.status;
+  if (response.status === 200) {
+    document.querySelector('#status').textContent = response.status + ' OK';
+  } else if (response.status === 404) {
+    document.querySelector('#status').textContent =
+      response.status + ' Not Found';
+  }
+
+  document.querySelector('#time').textContent =
+    response.customData.time + ' ms';
+  document.querySelector('#size').textContent = prettyBytes(
+    JSON.stringify(response.data).length +
+      JSON.stringify(response.headers).length
+  );
 };
 
 const updateResponseHeaders = headers => {
