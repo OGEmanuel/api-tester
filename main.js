@@ -137,6 +137,26 @@ urlInput.addEventListener('keyup', changeBorderColor);
 
 let selectedValue = 'GET';
 
+const changeTextColor = () => {
+  // Color changes for input text
+  if (methodInput.value === 'GET') {
+    methodInput.style.color = '#6bdd9a';
+  } else if (methodInput.value === 'POST') {
+    methodInput.style.color = '#ffe47e';
+  } else if (methodInput.value === 'PUT') {
+    methodInput.style.color = '#74aef6';
+  } else if (methodInput.value === 'PATCH') {
+    methodInput.style.color = '#c0a8e1';
+  } else if (methodInput.value === 'DELETE') {
+    methodInput.style.color = '#f79a8e';
+  } else if (methodInput.value === 'HEAD') {
+    methodInput.style.color = '#6bdd9a';
+  } else if (methodInput.value === 'OPTIONS') {
+    methodInput.style.color = '#f15eb0';
+  }
+};
+
+methodInput.addEventListener('keyup', changeTextColor);
 
 for (let i = 0; i < options.length; i++) {
   // Loop through dropdown children (p tags and listen for click events on anyone of them)
