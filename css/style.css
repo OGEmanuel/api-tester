@@ -36,7 +36,6 @@ section:nth-child(3) {
 section:nth-child(3) p:nth-child(2) {
   padding: 5rem;
   text-align: center;
-  /* width: max-content; */
 }
 
 section:nth-child(2) {
