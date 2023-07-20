@@ -47,7 +47,11 @@
               <p>Type a new method</p>
             </div>
           </div>
-          <input type="text" placeholder="Enter URL or place text" />
+          <input
+            id="url-input"
+            type="text"
+            placeholder="Enter URL or place text"
+          />
         </div>
         <button>Send</button>
       </form>
@@ -65,8 +69,8 @@
             <p>Description</p>
           </div>
           <div class="data-entry-input">
-            <input type="text" placeholder="Key" />
-            <input type="text" placeholder="Value" />
+            <input type="text" placeholder="Key" id="data-entry-key" />
+            <input type="text" placeholder="Value" id="data-entry-value" />
             <input type="text" placeholder="Description" />
           </div>
           <button data-hover="Add Row" id="add-row">
@@ -86,8 +90,8 @@
             <p>Description</p>
           </div>
           <div class="data-entry-input">
-            <input type="text" placeholder="Key" />
-            <input type="text" placeholder="Value" />
+            <input type="text" placeholder="Key" id="data-entry-key" />
+            <input type="text" placeholder="Value" id="data-entry-value" />
             <input type="text" placeholder="Description" />
           </div>
           <button data-hover="Add Row" id="add-row">
@@ -107,8 +111,8 @@
             <p>Description</p>
           </div>
           <div class="data-entry-input">
-            <input type="text" placeholder="Key" />
-            <input type="text" placeholder="Value" />
+            <input type="text" placeholder="Key" id="data-entry-key" />
+            <input type="text" placeholder="Value" id="data-entry-value" />
             <input type="text" placeholder="Description" />
           </div>
           <button data-hover="Add Row" id="add-row">
@@ -121,13 +125,20 @@
       </div>
     </section>
     <section>
-      <p>Body</p>
       <div>
-        <i class="fa-solid fa-globe" style="color: #f7f7f8"></i>
-        <p>Status: <span>200 OK</span></p>
-        <p>Time: <span>1557 ms</span></p>
-        <p>Size: <span>523 B</span></p>
+        <div class="data-entry">
+          <p class="selected" id="response-body-selector">Body</p>
+          <p id="response-header-selector">Headers</p>
+        </div>
+        <div>
+          <i class="fa-solid fa-globe" style="color: #f7f7f8"></i>
+          <p>Status: <span id="status">200</span> <span>OK</span></p>
+          <p>Time: <span>1557 ms</span></p>
+          <p>Size: <span>523 B</span></p>
+        </div>
       </div>
+      <div id="display-body">Body</div>
+      <div class="hidden" id="display-header">Header</div>
     </section>
     <script type="module" src="/main.js"></script>
   </body>

@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const paramsSelector = document.getElementById('params-selector');
 const headerSelector = document.getElementById('header-selector');
 const bodySelector = document.getElementById('body-selector');
@@ -5,39 +7,114 @@ const paramsTable = document.getElementById('query');
 const headersTable = document.getElementById('headers');
 const bodyTable = document.getElementById('body');
 const addRow = document.querySelectorAll('#add-row');
-const method = document.getElementById('method');
+const methodInput = document.getElementById('method');
 const dropdownOptions = document.querySelector('.dropdown-options');
 const dropdownContainer = document.querySelector('.dropdown');
 const options = dropdownOptions.querySelectorAll('p');
+const form = document.querySelector('form');
+const urlInput = document.getElementById('url-input');
+const queryParams = document.getElementById('query');
+const queryParamsContainer = queryParams.querySelector('.data-entry-box');
+const headers = document.getElementById('headers');
+const headersContainer = headers.querySelector('.data-entry-box');
+const body = document.getElementById('body');
+const bodyContainer = body.querySelector('.data-entry-box');
+const responseBody = document.getElementById('response-body-selector');
+const responseHeader = document.getElementById('response-header-selector');
+const displayBody = document.getElementById('display-body');
+const displayHeader = document.getElementById('display-header');
+
+const submitHandler = e => {
+  e.preventDefault();
+  if (urlInput.value === '') {
+    urlInput.style.borderColor = '#F79A8E';
+    return;
+  }
+
+  axios({
+    url: urlInput.value,
+    method: methodInput.value,
+    params: valuesToObjects(queryParamsContainer),
+    headers: valuesToObjects(headersContainer),
+  }).then(response => {
+    updateResponseDetails(response);
+    // updateResponseEditor(response.data);
+    updateResponseHeaders(response.headers);
+    console.log(response);
+  });
+};
+
+const updateResponseDetails = response => {
+  document.querySelector('#status').textContent = response.status;
+};
+
+const updateResponseHeaders = headers => {
+  displayHeader.innerHTML = '';
+  Object.entries(headers).forEach(([key, value]) => {
+    const keyElement = document.createElement('div');
+    keyElement.textContent = key;
+    displayHeader.append(keyElement);
+    const valueElement = document.createElement('div');
+    valueElement.textContent = value;
+    displayHeader.append(valueElement);
+  });
+};
+
+const valuesToObjects = input => {
+  const valuePairs = input.querySelectorAll('.data-entry-input');
+  return [...valuePairs].reduce((data, pair) => {
+    const key = pair.querySelector('#data-entry-key').value;
+    const value = pair.querySelector('#data-entry-value').value;
+
+    if (key === '') return data;
+    return { ...data, [key]: value };
+  }, {});
+};
+
+form.addEventListener('submit', submitHandler);
+
+const changeBorderColorOnBlur = () => {
+  urlInput.style.borderColor = '#ffffff21';
+};
+
+urlInput.addEventListener('blur', changeBorderColorOnBlur);
+
+const changeBorderColor = () => {
+  urlInput.style.borderColor = '#097bed';
+};
+
+urlInput.addEventListener('focus', changeBorderColor);
+
+urlInput.addEventListener('keyup', changeBorderColor);
 
 let selectedValue = 'GET';
 
 const changeTextColor = () => {
   // Color changes for input text
-  if (method.value === 'GET') {
-    method.style.color = '#6bdd9a';
-  } else if (method.value === 'POST') {
-    method.style.color = '#ffe47e';
-  } else if (method.value === 'PUT') {
-    method.style.color = '#74aef6';
-  } else if (method.value === 'PATCH') {
-    method.style.color = '#c0a8e1';
-  } else if (method.value === 'DELETE') {
-    method.style.color = '#f79a8e';
-  } else if (method.value === 'HEAD') {
-    method.style.color = '#6bdd9a';
-  } else if (method.value === 'OPTIONS') {
-    method.style.color = '#f15eb0';
+  if (methodInput.value === 'GET') {
+    methodInput.style.color = '#6bdd9a';
+  } else if (methodInput.value === 'POST') {
+    methodInput.style.color = '#ffe47e';
+  } else if (methodInput.value === 'PUT') {
+    methodInput.style.color = '#74aef6';
+  } else if (methodInput.value === 'PATCH') {
+    methodInput.style.color = '#c0a8e1';
+  } else if (methodInput.value === 'DELETE') {
+    methodInput.style.color = '#f79a8e';
+  } else if (methodInput.value === 'HEAD') {
+    methodInput.style.color = '#6bdd9a';
+  } else if (methodInput.value === 'OPTIONS') {
+    methodInput.style.color = '#f15eb0';
   }
 };
 
-method.addEventListener('keyup', changeTextColor);
+methodInput.addEventListener('keyup', changeTextColor);
 
 for (let i = 0; i < options.length; i++) {
   // Loop through dropdown children (p tags and listen for click events on anyone of them)
   const selectMethod = () => {
     selectedValue = options[i].textContent;
-    method.value = selectedValue;
+    methodInput.value = selectedValue;
     changeTextColor();
     dropdownContainer.style.display = 'none';
   };
@@ -48,15 +125,15 @@ for (let i = 0; i < options.length; i++) {
 const onFocus = () => {
   dropdownContainer.style.display = 'block';
   // Check if the input value is empty (or just whitespace)
-  if (method.value.trim() === '') {
+  if (methodInput.value.trim() === '') {
     // Change the value to a default value when focused
-    method.value = selectedValue;
+    methodInput.value = selectedValue;
     changeTextColor();
   }
 };
 
 // Listen for focus event
-method.addEventListener('focus', onFocus);
+methodInput.addEventListener('focus', onFocus);
 
 const onBlur = () => {
   // Give time allowance for event to register before display none
@@ -64,14 +141,14 @@ const onBlur = () => {
     dropdownContainer.style.display = 'none';
   }, 200);
   // If the input is left empty when blurred, revert to the original value
-  if (method.value.trim() === '') {
-    method.value = selectedValue;
+  if (methodInput.value.trim() === '') {
+    methodInput.value = selectedValue;
     changeTextColor();
   }
 };
 
 // Listen for blur event
-method.addEventListener('blur', onBlur);
+methodInput.addEventListener('blur', onBlur);
 
 // Delete row function
 const deleteAddedRows = newRow => {
@@ -91,8 +168,8 @@ const addNewRow = e => {
   const newRow = document.createElement('div');
   newRow.classList.add('data-entry-input');
   newRow.innerHTML = `
-      <input type="text" placeholder="Key" />
-      <input type="text" placeholder="Value" />
+      <input type="text" placeholder="Key" id="data-entry-key" />
+      <input type="text" placeholder="Value" id="data-entry-value" />
       <input type="text" placeholder="Description" />
       <button id="delete-row" data-hover="Delete Row">
         <i class="fa-regular fa-trash-can" style="color: #f0f2f5"></i>
@@ -146,3 +223,25 @@ const onClickBody = () => {
 };
 
 bodySelector.addEventListener('click', onClickBody);
+
+const onSwitchtoResponseBodytab = () => {
+  responseBody.classList.add('selected');
+  responseHeader.classList.remove('selected');
+
+  displayBody.classList.remove('hidden');
+  displayHeader.classList.add('hidden');
+  displayHeader.classList.remove('grid');
+};
+
+responseBody.addEventListener('click', onSwitchtoResponseBodytab);
+
+const onSwitchtoResponseHeadertab = () => {
+  responseBody.classList.remove('selected');
+  responseHeader.classList.add('selected');
+
+  displayBody.classList.add('hidden');
+  displayHeader.classList.remove('hidden');
+  displayHeader.classList.add('grid');
+};
+
+responseHeader.addEventListener('click', onSwitchtoResponseHeadertab);
