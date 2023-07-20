@@ -55,6 +55,7 @@ const submitHandler = e => {
   document.querySelector('.animation').style.backgroundColor = '#ff6c37';
   if (urlInput.value === '') {
     urlInput.style.borderColor = '#F79A8E';
+    document.querySelector('.animation').style.backgroundColor = 'transparent';
     return;
   }
 
