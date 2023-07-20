@@ -125,22 +125,31 @@
         </div>
       </div>
     </section>
-    <section>
-      <div>
-        <div class="data-entry">
-          <p class="selected" id="response-body-selector">Body</p>
-          <p id="response-header-selector">Headers</p>
-        </div>
-        <div class="hidden" id="response-details">
-          <i class="fa-solid fa-globe" style="color: #f7f7f8"></i>
-          <p>Status: <span id="status"></span></p>
-          <p>Time: <span id="time"></span></p>
-          <p>Size: <span id="size"></span></p>
-        </div>
+    <div class="response-box">
+      <div class="animation-container">
+        <div class="animation"></div>
       </div>
-      <div id="display-body"></div>
-      <div class="hidden" id="display-header"></div>
-    </section>
+      <section id="response-tab" class="hidden">
+        <div>
+          <div class="data-entry">
+            <p class="selected" id="response-body-selector">Body</p>
+            <p id="response-header-selector">Headers</p>
+          </div>
+          <div id="response-details">
+            <i class="fa-solid fa-globe" style="color: #f7f7f8"></i>
+            <p>Status: <span id="status"></span></p>
+            <p>Time: <span id="time"></span></p>
+            <p>Size: <span id="size"></span></p>
+          </div>
+        </div>
+        <div id="display-body"></div>
+        <div id="display-header" class="hidden"></div>
+      </section>
+      <section id="response-placeholder">
+        <p>Response</p>
+        <p>Enter the URL and click send to get a response</p>
+      </section>
+    </div>
     <script type="module" src="/main.js"></script>
   </body>
 </html>

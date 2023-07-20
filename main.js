@@ -1,6 +1,5 @@
 import axios from 'axios';
 import prettyBytes from 'pretty-bytes';
-// import { setupEditors } from './setupEditor';
 
 const paramsSelector = document.getElementById('params-selector');
 const headerSelector = document.getElementById('header-selector');
@@ -49,14 +48,11 @@ const updateResponseEditor = data => {
   const obj = JSON.parse(str);
 
   displayBody.textContent = JSON.stringify(obj, null, 2);
-
-  // console.log(JSON.stringify(obj, null, 2));
-  // console.log();
 };
 
-// const { requestEditor,  } = setupEditors();
 const submitHandler = e => {
   e.preventDefault();
+  document.querySelector('.animation').style.backgroundColor = '#ff6c37';
   if (urlInput.value === '') {
     urlInput.style.borderColor = '#F79A8E';
     return;
@@ -71,10 +67,13 @@ const submitHandler = e => {
   })
     .catch(e => e)
     .then(response => {
-      document.getElementById('response-details').style.display = 'flex';
       updateResponseDetails(response);
       updateResponseEditor(response.data);
       updateResponseHeaders(response.headers);
+      document.getElementById('response-tab').classList.remove('hidden');
+      document.getElementById('response-placeholder').classList.add('hidden');
+      document.querySelector('.animation').style.backgroundColor =
+        'transparent';
       console.log(response);
     });
 };
@@ -85,6 +84,8 @@ const updateResponseDetails = response => {
   } else if (response.status === 404) {
     document.querySelector('#status').textContent =
       response.status + ' Not Found';
+  } else {
+    document.querySelector('#status').textContent = response.status;
   }
 
   document.querySelector('#time').textContent =

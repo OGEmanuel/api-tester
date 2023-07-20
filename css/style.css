@@ -6,23 +6,40 @@
   box-sizing: border-box;
 }
 
+html {
+  background-color: #282828;
+}
+
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #282828;
   height: 100vh;
+  max-width: 1440px;
+  min-width: 800px;
+  margin: 0 auto;
 }
 
 section:nth-child(1) {
   padding: 2rem 2rem 0;
 }
 
+section:nth-child(3) {
+  color: #a6a6a6;
+  font-size: 0.8rem;
+  font-weight: 700;
+  position: relative;
+}
+
+section:nth-child(3) p:nth-child(2) {
+  padding: 5rem;
+  text-align: center;
+  /* width: max-content; */
+}
+
 section:nth-child(2) {
-  /* height: ; */
+  position: relative;
 }
 
 section:nth-child(2) > div:nth-child(1) {
-  border-top: 1px solid #3b3b3b;
-  padding: 0.5rem;
   color: #a6a6a6;
   font-size: 0.8rem;
   font-weight: 700;
@@ -37,7 +54,7 @@ section:nth-child(2) > div:nth-child(2) {
 }
 
 section:nth-child(2) > div:nth-child(1) div:nth-child(2) {
-  /* display: flex; */
+  display: flex;
   align-items: center;
   gap: 1rem;
 }
@@ -306,7 +323,7 @@ input:focus {
 }
 
 .data-entry-box {
-  height: 16rem;
+  height: 12rem;
   overflow: auto;
 }
 
@@ -373,9 +390,52 @@ input:focus {
   white-space: pre-wrap;
   padding: 1rem;
   color: #a6a6a6;
-  height: 10rem;
-  overflow: auto;
+  height: 18rem;
+  overflow-y: auto;
   font-family: 'Ubuntu', sans-serif;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+.animation-container {
+  height: 2px;
+  width: 90%;
+  position: absolute;
+  margin: 0 auto;
+  top: 0;
+}
+
+.animation {
+  position: relative;
+  width: 0%;
+  height: 100%;
+  margin: 0 auto;
+  background-color: transparent;
+  /* #ff6c37 */
+  top: 0;
+  animation: barWidth 2s linear infinite;
+}
+
+@keyframes barWidth {
+  0% {
+    width: 0%;
+  }
+  25% {
+    width: 50%;
+  }
+  50% {
+    width: 100%;
+  }
+  75% {
+    width: 50%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
+.response-box {
+  border-top: 1px solid #3b3b3b;
+  padding: 0.5rem;
+  position: relative;
 }
