@@ -44,7 +44,14 @@ axios.interceptors.response.use(updateEndTime, e => {
 });
 
 const updateResponseEditor = data => {
-  JSON.stringify(data, null, 2);
+  const str = JSON.stringify(data, null, 4);
+
+  const obj = JSON.parse(str);
+
+  displayBody.textContent = JSON.stringify(obj, null, 2);
+
+  // console.log(JSON.stringify(obj, null, 2));
+  // console.log();
 };
 
 // const { requestEditor,  } = setupEditors();
@@ -60,6 +67,7 @@ const submitHandler = e => {
     method: methodInput.value,
     params: valuesToObjects(queryParamsContainer),
     headers: valuesToObjects(headersContainer),
+    data: valuesToObjects(bodyContainer),
   })
     .catch(e => e)
     .then(response => {

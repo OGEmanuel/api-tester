@@ -16,6 +16,10 @@ section:nth-child(1) {
   padding: 2rem 2rem 0;
 }
 
+section:nth-child(2) {
+  /* height: ; */
+}
+
 section:nth-child(2) > div:nth-child(1) {
   border-top: 1px solid #3b3b3b;
   padding: 0.5rem;
@@ -361,6 +365,17 @@ input:focus {
   font-size: 0.8rem;
 }
 
-/* #request-body {
-over
-} */
+#display-body::-webkit-scrollbar {
+  display: none;
+}
+
+#display-body {
+  white-space: pre-wrap;
+  padding: 1rem;
+  color: #a6a6a6;
+  height: 10rem;
+  overflow: auto;
+  font-family: 'Ubuntu', sans-serif;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
